@@ -1,14 +1,14 @@
 ﻿using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
 #if NETCOREAPP
 using Microsoft.AspNetCore.Routing;
 #endif
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class HttpRequestMock : HttpRequest, IContextMocks<HttpRequest>
     {

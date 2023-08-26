@@ -1,8 +1,8 @@
 ﻿using System;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class ServiceProviderMock : IServiceProvider, IContextMock<IServiceProvider>
     {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class ClaimsIdentityMock : ClaimsIdentity, IContextMock<ClaimsIdentity>
     {

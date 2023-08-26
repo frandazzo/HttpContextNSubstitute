@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class ServiceProviderMockTests
     {

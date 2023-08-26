@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using HttpContextMoq.Generic;
-using HttpContextMoq.Tests.Utils;
+using HttpContextNSubstitute.Generic;
+using HttpContextNSubstitute.Tests.Utils;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class PropertyGetUnitTest<TContextMock, TContext, TProperty> : UnitTest<TContextMock>
         where TContext : class

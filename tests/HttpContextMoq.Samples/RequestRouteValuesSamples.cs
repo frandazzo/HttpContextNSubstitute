@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Xunit;
 
-namespace HttpContextMoq.Samples;
+namespace HttpContextNSubstitute.Samples;
 
 public class RequestRouteValuesSamples
 {

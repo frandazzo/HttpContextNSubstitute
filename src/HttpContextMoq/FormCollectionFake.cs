@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace HttpContextMoq;
+namespace HttpContextNSubstitute;
 
 public class FormCollectionFake : IFormCollection
 {

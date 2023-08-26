@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class ClaimsPrincipalMock : ClaimsPrincipal, IContextMocks<ClaimsPrincipal>
     {

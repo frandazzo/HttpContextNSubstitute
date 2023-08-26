@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Xunit;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class HttpContextMockTests
     {

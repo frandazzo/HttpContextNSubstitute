@@ -4,7 +4,7 @@ using Xunit;
 using NSubstitute;
 using FluentAssertions;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class ItemsDictionaryMockTests
     {

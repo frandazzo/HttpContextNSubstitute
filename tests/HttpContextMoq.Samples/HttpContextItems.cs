@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using HttpContextMoq.Extensions;
+using HttpContextNSubstitute.Extensions;
 using Xunit;
 
-namespace HttpContextMoq.Samples;
+namespace HttpContextNSubstitute.Samples;
 
 public class HttpContextItems
 {

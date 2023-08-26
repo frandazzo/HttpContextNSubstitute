@@ -1,8 +1,8 @@
 ﻿using System;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using NSubstitute;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class MethodInvokeUnitTest<TContextMock, TContext> : UnitTest<TContextMock>
         where TContext : class

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Xunit;
 using NSubstitute;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class RequestCookieCollectionMockTests
     {

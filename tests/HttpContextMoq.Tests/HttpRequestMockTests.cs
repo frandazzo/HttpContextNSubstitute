@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Routing;
 using NSubstitute;
 using Xunit;
 
-namespace HttpContextMoq.Tests;
+namespace HttpContextNSubstitute.Tests;
 
 public class HttpRequestMockTests
 {

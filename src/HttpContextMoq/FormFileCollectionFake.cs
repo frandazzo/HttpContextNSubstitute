@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace HttpContextMoq;
+namespace HttpContextNSubstitute;
 
 public class FormFileCollectionFake : List<IFormFile>, IFormFileCollection
 {

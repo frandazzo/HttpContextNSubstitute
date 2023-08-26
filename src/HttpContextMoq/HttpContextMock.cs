@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using NSubstitute;
@@ -10,7 +10,7 @@ using NSubstitute;
 using Microsoft.AspNetCore.Http.Authentication;
 #endif
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class HttpContextMock : HttpContext, IContextMocks<HttpContext>
     {

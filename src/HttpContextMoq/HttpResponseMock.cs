@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class HttpResponseMock : HttpResponse, IContextMocks<HttpResponse>
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 
-namespace HttpContextMoq.Extensions
+namespace HttpContextNSubstitute.Extensions
 {
     public static class ContextExtensions
     {

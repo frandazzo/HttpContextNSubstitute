@@ -2,7 +2,7 @@
 using System.Threading;
 using Microsoft.Extensions.Primitives;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public static class Fakes
     {

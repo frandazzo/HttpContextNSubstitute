@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class RequestCookieCollectionFake : IRequestCookieCollection
     {

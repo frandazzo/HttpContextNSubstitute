@@ -1,8 +1,8 @@
 ﻿using System;
 using FluentAssertions;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class ContextMockUnitTest<TTarget, TSubTarget> : UnitTest<TTarget>
         where TSubTarget : class

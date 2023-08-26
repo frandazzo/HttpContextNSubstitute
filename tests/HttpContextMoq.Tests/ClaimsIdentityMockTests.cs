@@ -5,7 +5,7 @@ using System.IO;
 using System.Security.Claims;
 using Xunit;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class ClaimsIdentityMockTests
     {

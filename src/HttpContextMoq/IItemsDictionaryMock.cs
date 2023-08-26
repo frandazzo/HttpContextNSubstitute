@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public interface IItemsDictionaryMock : IDictionary<object, object>, IContextMock<IDictionary<object, object>>
     {

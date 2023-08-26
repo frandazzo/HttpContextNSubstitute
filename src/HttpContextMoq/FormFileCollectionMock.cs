@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class FormFileCollectionMock : IFormFileCollection, IContextMock<IFormFileCollection>
     {

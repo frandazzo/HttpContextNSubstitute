@@ -1,4 +1,4 @@
-﻿namespace HttpContextMoq.Generic
+﻿namespace HttpContextNSubstitute.Generic
 {
     public interface IContextMock<TMock> where TMock : class
     {

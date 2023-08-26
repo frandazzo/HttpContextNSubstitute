@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class QueryCollectionMock : IQueryCollection, IContextMock<IQueryCollection>
     {

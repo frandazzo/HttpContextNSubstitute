@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace HttpContextMoq.Tests.Helpers
+namespace HttpContextNSubstitute.Tests.Helpers
 {
     public class FakeStream : Stream
     {

@@ -1,8 +1,8 @@
-﻿using HttpContextMoq.Generic;
+﻿using HttpContextNSubstitute.Generic;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class ResponseCookiesMock : IResponseCookies, IContextMock<IResponseCookies>
     {

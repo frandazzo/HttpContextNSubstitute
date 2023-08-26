@@ -5,4 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Usage", "NS5000:Received check.", Justification = "<Pending>", Scope = "member", Target = "~M:HttpContextMoq.Tests.MethodInvokeUnitTest`2.Run(System.Func{`0})")]
+[assembly: SuppressMessage("Usage", "NS5000:Received check.", Justification = "<Pending>", Scope = "member", Target = "~M:HttpContextNSubstitute.Tests.MethodInvokeUnitTest`2.Run(System.Func{`0})")]

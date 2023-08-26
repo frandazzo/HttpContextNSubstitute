@@ -6,7 +6,7 @@ using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Xunit;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class HeaderDictionaryMockTests
     {

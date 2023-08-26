@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class SessionFeatureFake : ISessionFeature
     {

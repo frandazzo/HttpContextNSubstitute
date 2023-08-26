@@ -1,10 +1,10 @@
 using FluentAssertions;
-using HttpContextMoq.Extensions;
+using HttpContextNSubstitute.Extensions;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 using NSubstitute;
 
-namespace HttpContextMoq.Samples;
+namespace HttpContextNSubstitute.Samples;
 
 public class RequestUrlSamples
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using FluentAssertions;
-using HttpContextMoq.Extensions;
+using HttpContextNSubstitute.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using NSubstitute;
-namespace HttpContextMoq.Samples;
+namespace HttpContextNSubstitute.Samples;
 
 public class RequestServicesSamples
 {

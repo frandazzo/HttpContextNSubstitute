@@ -11,7 +11,7 @@ using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;
 
-namespace HttpContextMoq.Extensions.Tests
+namespace HttpContextNSubstitute.Extensions.Tests
 {
     public class ContextExtensionsTests
     {

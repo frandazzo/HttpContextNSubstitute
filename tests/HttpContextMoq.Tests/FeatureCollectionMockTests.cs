@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http.Features;
 using NSubstitute;
 using Xunit;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class FeatureCollectionMockTests
     {

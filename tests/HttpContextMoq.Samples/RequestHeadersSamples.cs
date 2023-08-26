@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using HttpContextMoq.Extensions;
+using HttpContextNSubstitute.Extensions;
 using Microsoft.Extensions.Primitives;
 using Xunit;
 
-namespace HttpContextMoq.Samples;
+namespace HttpContextNSubstitute.Samples;
 
 public class RequestHeadersSamples
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public abstract class UnitTest<TTarget> where TTarget : class
     {

@@ -6,7 +6,7 @@ using FluentAssertions.Common;
 using NSubstitute;
 using NSubstitute.Extensions;
 
-namespace HttpContextMoq.Tests.Utils
+namespace HttpContextNSubstitute.Tests.Utils
 {
     public static class ReflectionHelper
     {

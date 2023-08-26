@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace HttpContextMoq
+namespace HttpContextNSubstitute
 {
     public class HttpContextAccessorMock : IHttpContextAccessor
     {

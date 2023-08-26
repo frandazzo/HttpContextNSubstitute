@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using HttpContextMoq.Generic;
+using HttpContextNSubstitute.Generic;
 using Xunit;
 
-namespace HttpContextMoq.Tests.Generic
+namespace HttpContextNSubstitute.Tests.Generic
 {
     public class MockCollectionTests
     {

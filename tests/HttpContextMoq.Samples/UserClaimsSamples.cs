@@ -2,7 +2,7 @@
 using Xunit;
 using NSubstitute;
 
-namespace HttpContextMoq.Samples;
+namespace HttpContextNSubstitute.Samples;
 
 public class UserClaimsSamples
 {

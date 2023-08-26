@@ -1,9 +1,9 @@
 ﻿using System;
-using HttpContextMoq.Generic;
-using HttpContextMoq.Tests.Helpers;
-using HttpContextMoq.Tests.Utils;
+using HttpContextNSubstitute.Generic;
+using HttpContextNSubstitute.Tests.Helpers;
+using HttpContextNSubstitute.Tests.Utils;
 
-namespace HttpContextMoq.Tests
+namespace HttpContextNSubstitute.Tests
 {
     public class PropertySetUnitTest<TContextMock, TContext> : UnitTest<TContextMock>
         where TContext : class

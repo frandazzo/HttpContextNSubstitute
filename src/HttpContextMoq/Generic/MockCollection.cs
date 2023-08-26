@@ -1,4 +1,4 @@
-﻿namespace HttpContextMoq.Generic
+﻿namespace HttpContextNSubstitute.Generic
 {
     using System.Collections.Generic;
     using System.Linq;
