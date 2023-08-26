@@ -6,7 +6,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace HttpContextMoq.Tests
@@ -50,7 +50,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<HttpRequestMock>().Should().BeSameAs(v)
                 ),
                 new PropertyGetUnitTest<HttpContextMock, HttpContext, HttpRequest>(
-                    t => t.Request, Times.Never
+                    t => t.Request, 0
                 ),
                 // Response
                 new FuncAndAssertResultUnitTest<HttpContextMock, HttpResponseMock>(
@@ -60,7 +60,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<HttpResponseMock>().Should().BeSameAs(v)
                 ),
                 new PropertyGetUnitTest<HttpContextMock, HttpContext, HttpResponse>(
-                    t => t.Response, Times.Never
+                    t => t.Response, 0
                 ),
                 // Features
                 new FuncAndAssertResultUnitTest<HttpContextMock, FeatureCollectionMock>(
@@ -70,7 +70,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<FeatureCollectionMock>().Should().BeSameAs(v)
                 ),
                 new PropertyGetUnitTest<HttpContextMock, HttpContext, IFeatureCollection>(
-                    t => t.Features, Times.Never
+                    t => t.Features, 0
                 ),
                 // Connection
                 new FuncAndAssertResultUnitTest<HttpContextMock, ConnectionInfoMock>(
@@ -80,7 +80,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<ConnectionInfoMock>().Should().BeSameAs(v)
                 ),
                 new PropertyGetUnitTest<HttpContextMock, HttpContext, ConnectionInfo>(
-                    t => t.Connection, Times.Never
+                    t => t.Connection, 0
                 ),
                 // Items
                 new FuncAndAssertResultUnitTest<HttpContextMock, IItemsDictionaryMock>(
@@ -90,7 +90,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<ItemsDictionaryMock>().Should().BeSameAs(v)
                 ),
                 new PropertyGetUnitTest<HttpContextMock, HttpContext, IDictionary<object, object>>(
-                    t => t.Items, Times.Never
+                    t => t.Items, 0
                 ),
                 new FuncAndAssertResultUnitTest<HttpContextMock, IDictionary<object, object>>(
                     t => t.Items = new Dictionary<object, object>(),
@@ -105,7 +105,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<SessionMock>().Should().BeSameAs(v)
                 ),
                 new FuncAndAssertResultUnitTest<HttpContextMock, ISession>(
-                    t => t.Session = new Mock<ISession>().Object,
+                    t => t.Session = Substitute.For<ISession>(),
                     (t, v) => t.SessionMock.Should().BeNull(),
                     (t, v) => t.Session.Should().BeSameAs(v)
                 ),
@@ -133,7 +133,7 @@ namespace HttpContextMoq.Tests
                     (t, v) => t.Mocks.Get<ServiceProviderMock>().Should().BeSameAs(v)
                 ),
                 new PropertyGetUnitTest<HttpContextMock, HttpContext, IServiceProvider>(
-                    t => t.RequestServices, Times.Never
+                    t => t.RequestServices, 0
                 ),
                 new FuncAndAssertResultUnitTest<HttpContextMock, IServiceProvider>(
                     t => t.RequestServices = new ServiceCollection().BuildServiceProvider(),

@@ -40,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Moq" Version="4.16.1" NoWarn="NU1701" />
+		<PackageReference Include="NSubstitute" Version="5.0.0" />
 	</ItemGroup>
 
 </Project>

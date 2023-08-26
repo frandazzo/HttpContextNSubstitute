@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
 using Xunit;
+using NSubstitute;
 
 namespace HttpContextMoq.Tests
 {
@@ -39,7 +40,7 @@ namespace HttpContextMoq.Tests
                 ),
                 new ActionAndAssertUnitTest<RequestCookieCollectionMock>(
                     t => ((IEnumerable)t).GetEnumerator(),
-                    t => t.Mock.As<IEnumerable>().Verify(x => x.GetEnumerator())
+                    t => t.Mock.As<IEnumerable>().Received().GetEnumerator()
                 ),
                 new MethodInvokeUnitTest<RequestCookieCollectionMock, IRequestCookieCollection>(
                     t => t.TryGetValue(Fakes.String, out Fakes.OutString)

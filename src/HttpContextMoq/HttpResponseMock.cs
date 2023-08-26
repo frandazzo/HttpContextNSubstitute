@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
@@ -15,14 +15,14 @@ namespace HttpContextMoq
 
         public HttpResponseMock(HttpContextMock httpContextMock)
         {
-            this.Mock = new Mock<HttpResponse>();
+            this.Mock = Substitute.For<HttpResponse>();
             this.Mocks = new MockCollection(this);
             this.HttpContextMock = httpContextMock;
             this.HeadersMock = new HeaderDictionaryMock();
             this.CookiesMock = new ResponseCookiesMock();
         }
 
-        public Mock<HttpResponse> Mock { get; }
+        public HttpResponse Mock { get; }
 
         public MockCollection Mocks { get; }
 
@@ -58,25 +58,25 @@ namespace HttpContextMoq
 
         public override Stream Body
         {
-            get => this.Mock.Object.Body;
-            set => this.Mock.Object.Body = value;
+            get => this.Mock.Body;
+            set => this.Mock.Body = value;
         }
 
         public override long? ContentLength
         {
-            get => this.Mock.Object.ContentLength;
-            set => this.Mock.Object.ContentLength = value;
+            get => this.Mock.ContentLength;
+            set => this.Mock.ContentLength = value;
         }
 
         public override string ContentType
         {
-            get => this.Mock.Object.ContentType;
-            set => this.Mock.Object.ContentType = value;
+            get => this.Mock.ContentType;
+            set => this.Mock.ContentType = value;
         }
 
         public override IResponseCookies Cookies => _cookies;
 
-        public override bool HasStarted => this.Mock.Object.HasStarted;
+        public override bool HasStarted => this.Mock.HasStarted;
 
         public override IHeaderDictionary Headers => _headers;
 
@@ -84,8 +84,8 @@ namespace HttpContextMoq
 
         public override int StatusCode
         {
-            get => this.Mock.Object.StatusCode;
-            set => this.Mock.Object.StatusCode = value;
+            get => this.Mock.StatusCode;
+            set => this.Mock.StatusCode = value;
         }
 
         internal void SetHeaders(IHeaderDictionary headers)
@@ -94,18 +94,18 @@ namespace HttpContextMoq
             this.Mocks.Add(headers);
         }
 
-        public override void OnCompleted(Func<Task> callback) => this.Mock.Object.OnCompleted(callback);
+        public override void OnCompleted(Func<Task> callback) => this.Mock.OnCompleted(callback);
 
-        public override void OnCompleted(Func<object, Task> callback, object state) => this.Mock.Object.OnCompleted(callback, state);
+        public override void OnCompleted(Func<object, Task> callback, object state) => this.Mock.OnCompleted(callback, state);
 
-        public override void OnStarting(Func<Task> callback) => this.Mock.Object.OnStarting(callback);
+        public override void OnStarting(Func<Task> callback) => this.Mock.OnStarting(callback);
 
-        public override void OnStarting(Func<object, Task> callback, object state) => this.Mock.Object.OnStarting(callback, state);
+        public override void OnStarting(Func<object, Task> callback, object state) => this.Mock.OnStarting(callback, state);
 
-        public override void Redirect(string location) => this.Mock.Object.Redirect(location);
+        public override void Redirect(string location) => this.Mock.Redirect(location);
 
-        public override void Redirect(string location, bool permanent) => this.Mock.Object.Redirect(location, permanent);
+        public override void Redirect(string location, bool permanent) => this.Mock.Redirect(location, permanent);
 
-        public override void RegisterForDispose(IDisposable disposable) => this.Mock.Object.RegisterForDispose(disposable);
+        public override void RegisterForDispose(IDisposable disposable) => this.Mock.RegisterForDispose(disposable);
     }
 }

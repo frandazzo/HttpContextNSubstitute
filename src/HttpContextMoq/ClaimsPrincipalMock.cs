@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
 using HttpContextMoq.Generic;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
@@ -14,12 +14,12 @@ namespace HttpContextMoq
 
         public ClaimsPrincipalMock()
         {
-            this.Mock = new Mock<ClaimsPrincipal>();
+            this.Mock = Substitute.For<ClaimsPrincipal>();
             this.Mocks = new MockCollection(this);
             this.IdentityMock = new ClaimsIdentityMock();
         }
 
-        public Mock<ClaimsPrincipal> Mock { get; }
+        public ClaimsPrincipal Mock { get; }
 
         public MockCollection Mocks { get; }
 
@@ -33,32 +33,32 @@ namespace HttpContextMoq
             }
         }
 
-        public override IEnumerable<Claim> Claims => this.Mock.Object.Claims;
+        public override IEnumerable<Claim> Claims => this.Mock.Claims;
 
-        public override IEnumerable<ClaimsIdentity> Identities => this.Mock.Object.Identities;
+        public override IEnumerable<ClaimsIdentity> Identities => this.Mock.Identities;
 
         public override IIdentity Identity => _identity;
 
-        public override void AddIdentities(IEnumerable<ClaimsIdentity> identities) => this.Mock.Object.AddIdentities(identities);
+        public override void AddIdentities(IEnumerable<ClaimsIdentity> identities) => this.Mock.AddIdentities(identities);
 
-        public override void AddIdentity(ClaimsIdentity identity) => this.Mock.Object.AddIdentity(identity);
+        public override void AddIdentity(ClaimsIdentity identity) => this.Mock.AddIdentity(identity);
 
-        public override ClaimsPrincipal Clone() => this.Mock.Object.Clone();
+        public override ClaimsPrincipal Clone() => this.Mock.Clone();
 
-        public override IEnumerable<Claim> FindAll(Predicate<Claim> match) => this.Mock.Object.FindAll(match);
+        public override IEnumerable<Claim> FindAll(Predicate<Claim> match) => this.Mock.FindAll(match);
 
-        public override IEnumerable<Claim> FindAll(string type) => this.Mock.Object.FindAll(type);
+        public override IEnumerable<Claim> FindAll(string type) => this.Mock.FindAll(type);
 
-        public override Claim FindFirst(Predicate<Claim> match) => this.Mock.Object.FindFirst(match);
+        public override Claim FindFirst(Predicate<Claim> match) => this.Mock.FindFirst(match);
 
-        public override Claim FindFirst(string type) => this.Mock.Object.FindFirst(type);
+        public override Claim FindFirst(string type) => this.Mock.FindFirst(type);
 
-        public override bool HasClaim(Predicate<Claim> match) => this.Mock.Object.HasClaim(match);
+        public override bool HasClaim(Predicate<Claim> match) => this.Mock.HasClaim(match);
 
-        public override bool HasClaim(string type, string value) => this.Mock.Object.HasClaim(type, value);
+        public override bool HasClaim(string type, string value) => this.Mock.HasClaim(type, value);
 
-        public override bool IsInRole(string role) => this.Mock.Object.IsInRole(role);
+        public override bool IsInRole(string role) => this.Mock.IsInRole(role);
 
-        public override void WriteTo(BinaryWriter writer) => this.Mock.Object.WriteTo(writer);
+        public override void WriteTo(BinaryWriter writer) => this.Mock.WriteTo(writer);
     }
 }

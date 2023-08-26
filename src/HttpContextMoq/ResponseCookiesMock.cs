@@ -1,6 +1,6 @@
 ﻿using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
@@ -8,17 +8,17 @@ namespace HttpContextMoq
     {
         public ResponseCookiesMock()
         {
-            this.Mock = new Mock<IResponseCookies>();
+            this.Mock = Substitute.For<IResponseCookies>();
         }
 
-        public Mock<IResponseCookies> Mock { get; }
+        public IResponseCookies Mock { get; }
 
-        public void Append(string key, string value) => this.Mock.Object.Append(key, value);
+        public void Append(string key, string value) => this.Mock.Append(key, value);
 
-        public void Append(string key, string value, CookieOptions options) => this.Mock.Object.Append(key, value, options);
+        public void Append(string key, string value, CookieOptions options) => this.Mock.Append(key, value, options);
 
-        public void Delete(string key) => this.Mock.Object.Delete(key);
+        public void Delete(string key) => this.Mock.Delete(key);
 
-        public void Delete(string key, CookieOptions options) => this.Mock.Object.Delete(key, options);
+        public void Delete(string key, CookieOptions options) => this.Mock.Delete(key, options);
     }
 }

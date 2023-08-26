@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace HttpContextMoq.Tests
@@ -47,32 +48,32 @@ namespace HttpContextMoq.Tests
                     t => t.Add(Fakes.String, Fakes.StringValues)
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
-                    t => t.Add(It.IsAny<KeyValuePair<string, StringValues>>())
+                    t => t.Add(Arg.Any<KeyValuePair<string, StringValues>>())
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
                     t => t.Clear()
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
-                    t => t.Contains(It.IsAny<KeyValuePair<string, StringValues>>())
+                    t => t.Contains(Arg.Any<KeyValuePair<string, StringValues>>())
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
                     t => t.ContainsKey(Fakes.String)
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
-                    t => t.CopyTo(It.IsAny<KeyValuePair<string, StringValues>[]>(), Fakes.Int)
+                    t => t.CopyTo(Arg.Any < KeyValuePair < string, StringValues >[] >(), Fakes.Int)
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
                     t => t.GetEnumerator()
                 ),
                 new ActionAndAssertUnitTest<HeaderDictionaryMock>(
                     t => ((IEnumerable)t).GetEnumerator(),
-                    t => t.Mock.As<IEnumerable>().Verify(x => x.GetEnumerator())
+                    t => t.Mock.As<IEnumerable>().Received(1).GetEnumerator()
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
                     t => t.Remove(Fakes.String)
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
-                    t => t.Remove(It.IsAny<KeyValuePair<string, StringValues>>())
+                    t => t.Remove(Arg.Any < KeyValuePair < string, StringValues > >())
                 ),
                 new MethodInvokeUnitTest<HeaderDictionaryMock, IHeaderDictionary>(
                     t => t.TryGetValue(Fakes.String, out Fakes.OutStringValues)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http.Features;
-using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace HttpContextMoq.Tests
@@ -41,10 +41,10 @@ namespace HttpContextMoq.Tests
                 ),
                 new ActionAndAssertUnitTest<FeatureCollectionMock>(
                     t => ((IEnumerable)t).GetEnumerator(),
-                    t => t.Mock.As<IEnumerable>().Verify(x => x.GetEnumerator())
+                    t => t.Mock.As<IEnumerable>().Received(1).GetEnumerator()
                 ),
                 new MethodInvokeUnitTest<FeatureCollectionMock, IFeatureCollection>(
-                    t => t.Set<FeatureCollectionMockTests>(It.IsAny<FeatureCollectionMockTests>()), Times.Never
+                    t => t.Set(new FeatureCollectionMockTests()), 0
                 ),
                 new ActionAndAssertUnitTest<FeatureCollectionMock>(
                     t => t.Set<string>(Fakes.String),

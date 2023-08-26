@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace HttpContextMoq.Tests;
@@ -14,11 +14,11 @@ public class FormCollectionFakeTests
         var target = new FormCollectionFake();
 
         const string fileName = "attachment";
-        var file = new Mock<IFormFile>();
-        file.Setup(x => x.Name).Returns(fileName);
+        var file = Substitute.For<IFormFile>();
+        file.Name.Returns(fileName);
 
         // Act
-        target.FilesFake.Add(file.Object);
+        target.FilesFake.Add(file);
 
         // Assert
         target.Files.GetFile(fileName).Should().NotBeNull();
@@ -31,14 +31,14 @@ public class FormCollectionFakeTests
         var target = new FormCollectionFake();
 
         const string fileName = "attachment";
-        var file1 = new Mock<IFormFile>();
-        file1.Setup(x => x.Name).Returns(fileName);
-        var file2 = new Mock<IFormFile>();
-        file2.Setup(x => x.Name).Returns(fileName);
+        var file1 = Substitute.For<IFormFile>();
+        file1.Name.Returns(fileName);
+        var file2 = Substitute.For<IFormFile>();
+        file2.Name.Returns(fileName);
 
         // Actv
-        target.FilesFake.Add(file1.Object);
-        target.FilesFake.Add(file2.Object);
+        target.FilesFake.Add(file1);
+        target.FilesFake.Add(file2);
 
         // Assert
         target.Files.GetFiles(fileName)

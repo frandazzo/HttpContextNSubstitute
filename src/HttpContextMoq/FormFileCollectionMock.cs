@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
@@ -10,23 +10,23 @@ namespace HttpContextMoq
     {
         public FormFileCollectionMock()
         {
-            this.Mock = new Mock<IFormFileCollection>();
+            this.Mock = Substitute.For<IFormFileCollection>();
         }
 
-        public Mock<IFormFileCollection> Mock { get; }
+        public IFormFileCollection Mock { get; }
 
-        public IFormFile this[string name] => this.Mock.Object[name];
+        public IFormFile this[string name] => this.Mock[name];
 
-        public IFormFile this[int index] => this.Mock.Object[index];
+        public IFormFile this[int index] => this.Mock[index];
 
-        public int Count => this.Mock.Object.Count;
+        public int Count => this.Mock.Count;
 
-        public IEnumerator<IFormFile> GetEnumerator() => this.Mock.Object.GetEnumerator();
+        public IEnumerator<IFormFile> GetEnumerator() => this.Mock.GetEnumerator();
 
-        public IFormFile GetFile(string name) => this.Mock.Object.GetFile(name);
+        public IFormFile GetFile(string name) => this.Mock.GetFile(name);
 
-        public IReadOnlyList<IFormFile> GetFiles(string name) => this.Mock.Object.GetFiles(name);
+        public IReadOnlyList<IFormFile> GetFiles(string name) => this.Mock.GetFiles(name);
 
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Mock.Object).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Mock).GetEnumerator();
     }
 }

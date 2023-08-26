@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
 using Xunit;
+using NSubstitute;
+using FluentAssertions;
 
 namespace HttpContextMoq.Tests
 {
@@ -36,13 +37,13 @@ namespace HttpContextMoq.Tests
                 ),
                 new ActionAndAssertUnitTest<FormFileCollectionMock>(
                     t => ((IEnumerable)t).GetEnumerator(),
-                    t => t.Mock.As<IEnumerable>().Verify(x => x.GetEnumerator())
+                    t => t.Mock.As<IEnumerable>().Received(1).GetEnumerator()
                 ),
                 new MethodInvokeUnitTest<FormFileCollectionMock, IFormFileCollection>(
-                    t => t.GetFile(It.IsAny<string>())
+                    t => t.GetFile(Arg.Any<string>())
                 ),
                 new MethodInvokeUnitTest<FormFileCollectionMock, IFormFileCollection>(
-                    t => t.GetFiles(It.IsAny<string>())
+                    t => t.GetFiles(Arg.Any<string>())
                 ),
             }.ToData();
     }

@@ -5,7 +5,7 @@ using System.Threading;
 using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Moq;
+using NSubstitute;
 #if NETSTANDARD
 using Microsoft.AspNetCore.Http.Authentication;
 #endif
@@ -22,7 +22,7 @@ namespace HttpContextMoq
 
         public HttpContextMock()
         {
-            this.Mock = new Mock<HttpContext>();
+            this.Mock = Substitute.For<HttpContext>();
             this.Mocks = new MockCollection(this);
             this.RequestMock = new HttpRequestMock(this);
             this.ResponseMock = new HttpResponseMock(this);
@@ -33,7 +33,7 @@ namespace HttpContextMoq
             this.RequestServicesMock = new ServiceProviderMock();
         }
 
-        public Mock<HttpContext> Mock { get; }
+        public HttpContext Mock { get; }
 
         public MockCollection Mocks { get; }
 
@@ -125,7 +125,7 @@ namespace HttpContextMoq
 
         public override HttpRequest Request => _request;
 
-        public override CancellationToken RequestAborted { get => this.Mock.Object.RequestAborted; set => this.Mock.Object.RequestAborted = value; }
+        public override CancellationToken RequestAborted { get => this.Mock.RequestAborted; set => this.Mock.RequestAborted = value; }
 
         public override IServiceProvider RequestServices { get; set; }
 
@@ -148,17 +148,17 @@ namespace HttpContextMoq
             }
         }
 
-        public override string TraceIdentifier { get => this.Mock.Object.TraceIdentifier; set => this.Mock.Object.TraceIdentifier = value; }
+        public override string TraceIdentifier { get => this.Mock.TraceIdentifier; set => this.Mock.TraceIdentifier = value; }
 
         public override ClaimsPrincipal User { get; set; }
 
-        public override WebSocketManager WebSockets => this.Mock.Object.WebSockets;
+        public override WebSocketManager WebSockets => this.Mock.WebSockets;
 
-        public override void Abort() => this.Mock.Object.Abort();
+        public override void Abort() => this.Mock.Abort();
 
 #if NETSTANDARD
         [Obsolete]
-        public override AuthenticationManager Authentication => this.Mock.Object.Authentication;
+        public override AuthenticationManager Authentication => this.Mock.Authentication;
 #endif
     }
 }

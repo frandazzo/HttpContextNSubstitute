@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
-using Moq;
 using Xunit;
 
 namespace HttpContextMoq.Tests
@@ -36,43 +36,43 @@ namespace HttpContextMoq.Tests
                 ),
                 //Methods
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.AddClaim(It.IsAny<Claim>())
+                    t => t.AddClaim(Arg.Any<Claim>())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.AddClaim(It.IsAny<Claim>())
+                    t => t.AddClaim(Arg.Any < Claim >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.AddClaims(It.IsAny<IEnumerable<Claim>>())
+                    t => t.AddClaims(Arg.Any<IEnumerable<Claim>>())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
                     t => t.Clone()
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.FindAll(It.IsAny<Predicate<Claim>>())
+                    t => t.FindAll(Arg.Any < Predicate < Claim > >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.FindAll(It.IsAny<string>())
+                    t => t.FindAll(Arg.Any < string >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.FindFirst(It.IsAny<Predicate<Claim>>())
+                    t => t.FindFirst(Arg.Any < Predicate < Claim > >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.FindFirst(It.IsAny<string>())
+                    t => t.FindFirst(Arg.Any < string >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.HasClaim(It.IsAny<Predicate<Claim>>())
+                    t => t.HasClaim(Arg.Any < Predicate < Claim > >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.HasClaim(It.IsAny<string>(), It.IsAny<string>())
+                    t => t.HasClaim(Arg.Any < string >(), Arg.Any < string >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.RemoveClaim(It.IsAny<Claim>())
+                    t => t.RemoveClaim(Arg.Any < Claim >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.TryRemoveClaim(It.IsAny<Claim>())
+                    t => t.TryRemoveClaim(Arg.Any < Claim >())
                 ),
                 new MethodInvokeUnitTest<ClaimsIdentityMock, ClaimsIdentity>(
-                    t => t.WriteTo(It.IsAny<BinaryWriter>())
+                    t => t.WriteTo(Arg.Any < BinaryWriter >())
                 ),
             }.ToData();
     }

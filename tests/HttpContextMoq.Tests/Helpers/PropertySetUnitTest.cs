@@ -1,6 +1,7 @@
 ﻿using System;
 using HttpContextMoq.Generic;
-using Moq;
+using HttpContextMoq.Tests.Helpers;
+using HttpContextMoq.Tests.Utils;
 
 namespace HttpContextMoq.Tests
 {
@@ -9,12 +10,12 @@ namespace HttpContextMoq.Tests
         where TContextMock : class, IContextMock<TContext>, TContext
     {
         private readonly Action<TContext> _setterExpression;
-        private readonly Func<Times> _times;
+        private readonly int _received;
 
-        public PropertySetUnitTest(Action<TContext> setterExpression, Func<Times> times = null)
+        public PropertySetUnitTest(Action<TContext> setterExpression, int received)
         {
             _setterExpression = setterExpression;
-            _times = times;
+            _received = received;
         }
 
         public override void Run(Func<TContextMock> targetFactory)
@@ -22,11 +23,8 @@ namespace HttpContextMoq.Tests
             // Arrange
             var target = targetFactory.Invoke();
 
-            // Act
-            _setterExpression.Invoke(target);
-
             // Assert
-            target.Mock.VerifySet(_setterExpression, _times ?? Times.Once);
+            target.Mock.VerifySet(_setterExpression);
         }
     }
 }

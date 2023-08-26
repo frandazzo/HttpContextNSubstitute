@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 #if NETCOREAPP
 using Microsoft.AspNetCore.Routing;
 #endif
@@ -17,7 +17,7 @@ namespace HttpContextMoq
 
         public HttpRequestMock(HttpContextMock httpContextMock)
         {
-            this.Mock = new Mock<HttpRequest>();
+            this.Mock = Substitute.For<HttpRequest>();
             this.Mocks = new MockCollection(this);
             this.HttpContextMock = httpContextMock;
             this.HeadersMock = new HeaderDictionaryMock();
@@ -29,7 +29,7 @@ namespace HttpContextMoq
 #endif
         }
 
-        public Mock<HttpRequest> Mock { get; }
+        public HttpRequest Mock { get; }
 
         public MockCollection Mocks { get; }
 
@@ -93,87 +93,87 @@ namespace HttpContextMoq
 
         public override Stream Body
         {
-            get => this.Mock.Object.Body;
-            set => this.Mock.Object.Body = value;
+            get => this.Mock.Body;
+            set => this.Mock.Body = value;
         }
 
         public override long? ContentLength
         {
-            get => this.Mock.Object.ContentLength;
-            set => this.Mock.Object.ContentLength = value;
+            get => this.Mock.ContentLength;
+            set => this.Mock.ContentLength = value;
         }
 
         public override string ContentType
         {
-            get => this.Mock.Object.ContentType;
-            set => this.Mock.Object.ContentType = value;
+            get => this.Mock.ContentType;
+            set => this.Mock.ContentType = value;
         }
 
         public override IRequestCookieCollection Cookies { get; set; }
 
         public override IFormCollection Form { get; set; }
 
-        public override bool HasFormContentType => this.Mock.Object.HasFormContentType;
+        public override bool HasFormContentType => this.Mock.HasFormContentType;
 
         public override IHeaderDictionary Headers => _headers;
 
         public override HostString Host
         {
-            get => this.Mock.Object.Host;
-            set => this.Mock.Object.Host = value;
+            get => this.Mock.Host;
+            set => this.Mock.Host = value;
         }
 
         public override HttpContext HttpContext => this.HttpContextMock;
 
         public override bool IsHttps
         {
-            get => this.Mock.Object.IsHttps;
-            set => this.Mock.Object.IsHttps = value;
+            get => this.Mock.IsHttps;
+            set => this.Mock.IsHttps = value;
         }
 
         public override string Method
         {
-            get => this.Mock.Object.Method;
-            set => this.Mock.Object.Method = value;
+            get => this.Mock.Method;
+            set => this.Mock.Method = value;
         }
 
         public override PathString Path
         {
-            get => this.Mock.Object.Path;
-            set => this.Mock.Object.Path = value;
+            get => this.Mock.Path;
+            set => this.Mock.Path = value;
         }
 
         public override PathString PathBase
         {
-            get => this.Mock.Object.PathBase;
-            set => this.Mock.Object.PathBase = value;
+            get => this.Mock.PathBase;
+            set => this.Mock.PathBase = value;
         }
 
         public override string Protocol
         {
-            get => this.Mock.Object.Protocol;
-            set => this.Mock.Object.Protocol = value;
+            get => this.Mock.Protocol;
+            set => this.Mock.Protocol = value;
         }
 
         public override IQueryCollection Query { get; set; }
 
         public override QueryString QueryString
         {
-            get => this.Mock.Object.QueryString;
-            set => this.Mock.Object.QueryString = value;
+            get => this.Mock.QueryString;
+            set => this.Mock.QueryString = value;
         }
 
         public override string Scheme
         {
-            get => this.Mock.Object.Scheme;
-            set => this.Mock.Object.Scheme = value;
+            get => this.Mock.Scheme;
+            set => this.Mock.Scheme = value;
         }
 
 #if NETCOREAPP
         public override RouteValueDictionary RouteValues { get; set; }
 #endif
 
-        public override Task<IFormCollection> ReadFormAsync(CancellationToken cancellationToken = default) => this.Mock.Object.ReadFormAsync(cancellationToken);
+        public override Task<IFormCollection> ReadFormAsync(CancellationToken cancellationToken = default) => this.Mock.ReadFormAsync(cancellationToken);
 
         internal void SetHeaders(IHeaderDictionary headers)
         {

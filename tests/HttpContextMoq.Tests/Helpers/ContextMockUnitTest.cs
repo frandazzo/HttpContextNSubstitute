@@ -1,7 +1,6 @@
 ﻿using System;
 using FluentAssertions;
 using HttpContextMoq.Generic;
-using Moq;
 
 namespace HttpContextMoq.Tests
 {
@@ -16,7 +15,7 @@ namespace HttpContextMoq.Tests
 
             // Assert
             target.Mock.Should().NotBeNull();
-            target.Mock.Should().BeOfType(typeof(Mock<TSubTarget>));
+            target.Mock.Should().BeAssignableTo(typeof(TSubTarget));
 
             if (target is IContextMocks<TSubTarget> contextMocks)
             {

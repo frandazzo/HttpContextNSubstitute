@@ -3,7 +3,7 @@ using FluentAssertions;
 using HttpContextMoq.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
-
+using NSubstitute;
 namespace HttpContextMoq.Samples;
 
 public class RequestServicesSamples
@@ -15,7 +15,7 @@ public class RequestServicesSamples
         var context = new HttpContextMock();
 
         // Act
-        context.RequestServicesMock.Mock.Setup(x => x.GetService(typeof(RequestServicesSamples))).Returns(new RequestServicesSamples());
+        context.RequestServicesMock.GetService(typeof(RequestServicesSamples)).Returns(new RequestServicesSamples());
 
         // Assert
         context.RequestServices.GetRequiredService<RequestServicesSamples>().Should().NotBeNull();
@@ -43,7 +43,7 @@ public class RequestServicesSamples
         var context = new HttpContextMock();
 
         // Act
-        context.SetupRequestService(() => new RequestServicesSamples());
+        context.SetupRequestService(new RequestServicesSamples());
 
         // Assert
         context.RequestServices.GetRequiredService<RequestServicesSamples>().Should().NotBeNull();

@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
@@ -12,47 +12,47 @@ namespace HttpContextMoq
     {
         public ConnectionInfoMock()
         {
-            this.Mock = new Mock<ConnectionInfo>();
+            this.Mock = Substitute.For<ConnectionInfo>();
         }
 
-        public Mock<ConnectionInfo> Mock { get; }
+        public ConnectionInfo Mock { get; }
 
         public override X509Certificate2 ClientCertificate
         {
-            get => this.Mock.Object.ClientCertificate;
-            set => this.Mock.Object.ClientCertificate = value;
+            get => this.Mock.ClientCertificate;
+            set => this.Mock.ClientCertificate = value;
         }
 
         public override string Id
         {
-            get => this.Mock.Object.Id;
-            set => this.Mock.Object.Id = value;
+            get => this.Mock.Id;
+            set => this.Mock.Id = value;
         }
 
         public override IPAddress LocalIpAddress
         {
-            get => this.Mock.Object.LocalIpAddress;
-            set => this.Mock.Object.LocalIpAddress = value;
+            get => this.Mock.LocalIpAddress;
+            set => this.Mock.LocalIpAddress = value;
         }
 
         public override int LocalPort
         {
-            get => this.Mock.Object.LocalPort;
-            set => this.Mock.Object.LocalPort = value;
+            get => this.Mock.LocalPort;
+            set => this.Mock.LocalPort = value;
         }
 
         public override IPAddress RemoteIpAddress
         {
-            get => this.Mock.Object.RemoteIpAddress;
-            set => this.Mock.Object.RemoteIpAddress = value;
+            get => this.Mock.RemoteIpAddress;
+            set => this.Mock.RemoteIpAddress = value;
         }
 
         public override int RemotePort
         {
-            get => this.Mock.Object.RemotePort;
-            set => this.Mock.Object.RemotePort = value;
+            get => this.Mock.RemotePort;
+            set => this.Mock.RemotePort = value;
         }
 
-        public override Task<X509Certificate2> GetClientCertificateAsync(CancellationToken cancellationToken = default) => this.Mock.Object.GetClientCertificateAsync(cancellationToken);
+        public override Task<X509Certificate2> GetClientCertificateAsync(CancellationToken cancellationToken = default) => this.Mock.GetClientCertificateAsync(cancellationToken);
     }
 }

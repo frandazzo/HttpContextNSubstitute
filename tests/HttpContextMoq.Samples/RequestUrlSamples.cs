@@ -2,6 +2,7 @@ using FluentAssertions;
 using HttpContextMoq.Extensions;
 using Microsoft.AspNetCore.Http;
 using Xunit;
+using NSubstitute;
 
 namespace HttpContextMoq.Samples;
 
@@ -31,8 +32,8 @@ public class RequestUrlSamples
         var context = new HttpContextMock();
 
         // Act
-        context.RequestMock.Mock.Setup(r => r.Scheme).Returns(scheme);
-        context.RequestMock.Mock.Setup(r => r.Host).Returns(new HostString(host));
+        context.RequestMock.Mock.Scheme.Returns(scheme);
+        context.RequestMock.Mock.Host.Returns(new HostString(host));
 
         // Assert
         context.Request.Scheme.Should().Be(scheme);

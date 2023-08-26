@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
+using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using Xunit;
 
 namespace HttpContextMoq.Extensions.Tests
@@ -329,11 +331,17 @@ namespace HttpContextMoq.Extensions.Tests
         {
             // Arrange
             var context = new HttpContextMock();
-
+            
             // Assert
             Assert.Throws<InvalidOperationException>(() => context.SessionMock);
             Assert.Throws<InvalidOperationException>(() => context.Session);
-            context.Features.Get<ISessionFeature>().Should().BeNull();
+
+            // Before migration from Moq to NSubstitute this test was passing without this line:
+            context.Features.Get<ISessionFeature>().ReturnsNull();
+
+            var sessionFeature = context.Features.Get<ISessionFeature>();
+
+            sessionFeature.Should().BeNull();
         }
 
         [Fact]

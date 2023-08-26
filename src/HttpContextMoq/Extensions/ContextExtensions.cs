@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq.Extensions
 {
@@ -16,58 +16,58 @@ namespace HttpContextMoq.Extensions
         {
             var uri = new Uri(url);
 
-            httpContextMock.RequestMock.Mock.Setup(x => x.Protocol).Returns("HTTP/1.1");
-            httpContextMock.RequestMock.Mock.Setup(x => x.IsHttps).Returns(uri.Scheme == "https");
-            httpContextMock.RequestMock.Mock.Setup(x => x.Scheme).Returns(uri.Scheme);
+            httpContextMock.RequestMock.Protocol.Returns("HTTP/1.1");
+            httpContextMock.RequestMock.IsHttps.Returns(uri.Scheme == "https");
+            httpContextMock.RequestMock.Scheme.Returns(uri.Scheme);
             if ((uri.Scheme == "https" && uri.Port != 443) || (uri.Scheme == "http" && uri.Port != 80))
             {
-                httpContextMock.RequestMock.Mock.Setup(x => x.Host).Returns(new HostString(uri.Host, uri.Port));
+                httpContextMock.RequestMock.Host.Returns(new HostString(uri.Host, uri.Port));
             }
             else
             {
-                httpContextMock.RequestMock.Mock.Setup(x => x.Host).Returns(new HostString(uri.Host));
+                httpContextMock.RequestMock.Host.Returns(new HostString(uri.Host));
             }
 
-            httpContextMock.RequestMock.Mock.Setup(x => x.PathBase).Returns(string.Empty);
-            httpContextMock.RequestMock.Mock.Setup(x => x.Path).Returns(uri.AbsolutePath);
+            httpContextMock.RequestMock.PathBase.Returns(PathString.Empty);
+            httpContextMock.RequestMock.Path.Returns(new PathString(uri.AbsolutePath));
 
             var queryString = QueryString.FromUriComponent(uri);
-            httpContextMock.RequestMock.Mock.Setup(x => x.QueryString).Returns(queryString);
+            httpContextMock.RequestMock.QueryString.Returns(queryString);
 
             var queryDictionary = QueryHelpers.ParseQuery(queryString.ToString());
             httpContextMock.RequestMock.Query = new QueryCollectionFake(queryDictionary);
 
-            var requestFeature = new Mock<IHttpRequestFeature>();
-            requestFeature.Setup(x => x.RawTarget).Returns(uri.PathAndQuery);
-            httpContextMock.FeaturesMock.Mock.Setup(x => x.Get<IHttpRequestFeature>()).Returns(requestFeature.Object);
+            var requestFeature = Substitute.For<IHttpRequestFeature>();
+            requestFeature.RawTarget.Returns(uri.PathAndQuery);
+            httpContextMock.FeaturesMock.Get<IHttpRequestFeature>().Returns(requestFeature);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupRequestMethod(this HttpContextMock httpContextMock, string method)
         {
-            httpContextMock.RequestMock.Mock.Setup(x => x.Method).Returns(method);
+            httpContextMock.RequestMock.Method.Returns(method);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupRequestBody(this HttpContextMock httpContextMock, Stream stream)
         {
-            httpContextMock.RequestMock.Mock.Setup(x => x.Body).Returns(stream);
+            httpContextMock.RequestMock.Body.Returns(stream);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupRequestContentType(this HttpContextMock httpContextMock, string contentType)
         {
-            httpContextMock.RequestMock.Mock.Setup(x => x.ContentType).Returns(contentType);
+            httpContextMock.RequestMock.ContentType.Returns(contentType);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupRequestContentLength(this HttpContextMock httpContextMock, long? contentLength)
         {
-            httpContextMock.RequestMock.Mock.Setup(x => x.ContentLength).Returns(contentLength);
+            httpContextMock.RequestMock.ContentLength.Returns(contentLength);
 
             return httpContextMock;
         }
@@ -91,21 +91,21 @@ namespace HttpContextMoq.Extensions
 
         public static HttpContextMock SetupResponseStatusCode(this HttpContextMock httpContextMock, int statusCode)
         {
-            httpContextMock.ResponseMock.Mock.Setup(x => x.StatusCode).Returns(statusCode);
+            httpContextMock.ResponseMock.StatusCode.Returns(statusCode);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupResponseBody(this HttpContextMock httpContextMock, Stream stream)
         {
-            httpContextMock.ResponseMock.Mock.Setup(x => x.Body).Returns(stream);
+            httpContextMock.ResponseMock.Body.Returns(stream);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupResponseContentType(this HttpContextMock httpContextMock, string contentType)
         {
-            httpContextMock.ResponseMock.Mock.Setup(x => x.ContentType).Returns(contentType);
+            httpContextMock.ResponseMock.ContentType.Returns(contentType);
 
             return httpContextMock;
         }
@@ -119,7 +119,7 @@ namespace HttpContextMoq.Extensions
 
         public static HttpContextMock SetupResponseContentLength(this HttpContextMock httpContextMock, long? contentLength)
         {
-            httpContextMock.ResponseMock.Mock.Setup(x => x.ContentLength).Returns(contentLength);
+            httpContextMock.ResponseMock.ContentLength.Returns(contentLength);
 
             return httpContextMock;
         }
@@ -128,21 +128,21 @@ namespace HttpContextMoq.Extensions
         {
             var session = new SessionMock();
             httpContextMock.SessionMock = session;
-            httpContextMock.FeaturesMock.Mock.Setup(x => x.Get<ISessionFeature>()).Returns(new SessionFeatureFake() { Session = session });
+            httpContextMock.FeaturesMock.Get<ISessionFeature>().Returns(new SessionFeatureFake() { Session = session });
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupRequestService<TService>(this HttpContextMock httpContextMock, TService instance)
         {
-            httpContextMock.RequestServicesMock.Mock.Setup(x => x.GetService(typeof(TService))).Returns(instance);
+            httpContextMock.RequestServicesMock.GetService(typeof(TService)).Returns(instance);
 
             return httpContextMock;
         }
 
         public static HttpContextMock SetupRequestService<TService>(this HttpContextMock httpContextMock, Func<TService> factory)
         {
-            httpContextMock.RequestServicesMock.Mock.Setup(x => x.GetService(typeof(TService))).Returns(() => (object)factory());
+            httpContextMock.RequestServicesMock.GetService(typeof(TService)).Returns(() => (object)factory());
 
             return httpContextMock;
         }

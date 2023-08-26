@@ -1,6 +1,6 @@
 ﻿using System;
 using HttpContextMoq.Generic;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
@@ -8,11 +8,11 @@ namespace HttpContextMoq
     {
         public ServiceProviderMock()
         {
-            this.Mock = new Mock<IServiceProvider>();
+            this.Mock = Substitute.For<IServiceProvider>();
         }
 
-        public Mock<IServiceProvider> Mock { get; }
+        public IServiceProvider Mock { get; }
 
-        public object GetService(Type serviceType) => this.Mock.Object.GetService(serviceType);
+        public object GetService(Type serviceType) => this.Mock.GetService(serviceType);
     }
 }

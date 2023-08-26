@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace HttpContextMoq.Tests
@@ -44,14 +44,14 @@ namespace HttpContextMoq.Tests
                 ),
                 //Methods
                 new MethodInvokeUnitTest<FormCollectionMock, IFormCollection>(
-                    t => t.ContainsKey(It.IsAny<string>())
+                    t => t.ContainsKey(Arg.Any<string>())
                 ),
                 new MethodInvokeUnitTest<FormCollectionMock, IFormCollection>(
                     t => t.GetEnumerator()
                 ),
                 new ActionAndAssertUnitTest<FormCollectionMock>(
                     t => ((IEnumerable)t).GetEnumerator(),
-                    t => t.Mock.As<IEnumerable>().Verify(x => x.GetEnumerator())
+                    t => t.Mock.As<IEnumerable>().Received(1).GetEnumerator()
                 ),
                 new MethodInvokeUnitTest<FormCollectionMock, IFormCollection>(
                     t => t.TryGetValue(Fakes.String, out Fakes.OutStringValues)

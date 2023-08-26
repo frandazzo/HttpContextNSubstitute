@@ -3,35 +3,31 @@ using System.Threading;
 using System.Threading.Tasks;
 using HttpContextMoq.Generic;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq
 {
     public class SessionMock : ISession, IContextMock<ISession>
     {
-        public SessionMock()
-        {
-            this.Mock = new Mock<ISession>();
-        }
+        public ISession Mock => Substitute.For<ISession>();
 
-        public Mock<ISession> Mock { get; }
+        public string Id => Mock.Id;
 
-        public string Id => this.Mock.Object.Id;
+        public bool IsAvailable => Mock.IsAvailable;
 
-        public bool IsAvailable => this.Mock.Object.IsAvailable;
+        public IEnumerable<string> Keys => Mock.Keys;
 
-        public IEnumerable<string> Keys => this.Mock.Object.Keys;
 
-        public void Clear() => this.Mock.Object.Clear();
+        public void Clear() => Mock.Clear();
 
-        public Task CommitAsync(CancellationToken cancellationToken = default) => this.Mock.Object.CommitAsync(cancellationToken);
+        public Task CommitAsync(CancellationToken cancellationToken = default) => Mock.CommitAsync(cancellationToken);
 
-        public Task LoadAsync(CancellationToken cancellationToken = default) => this.Mock.Object.LoadAsync(cancellationToken);
+        public Task LoadAsync(CancellationToken cancellationToken = default) => Mock.LoadAsync(cancellationToken);
 
-        public void Remove(string key) => this.Mock.Object.Remove(key);
+        public void Remove(string key) => Mock.Remove(key);
 
-        public void Set(string key, byte[] value) => this.Mock.Object.Set(key, value);
+        public void Set(string key, byte[] value) => Mock.Set(key, value);
 
-        public bool TryGetValue(string key, out byte[] value) => this.Mock.Object.TryGetValue(key, out value);
+        public bool TryGetValue(string key, out byte[] value) => Mock.TryGetValue(key, out value);
     }
 }

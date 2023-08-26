@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Microsoft.AspNetCore.Http;
-using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace HttpContextMoq.Tests
@@ -49,7 +50,7 @@ namespace HttpContextMoq.Tests
                 ),
                 //Methods
                 new MethodInvokeUnitTest<ConnectionInfoMock, ConnectionInfo>(
-                    t => t.GetClientCertificateAsync(It.IsAny<CancellationToken>())
+                    t => t.GetClientCertificateAsync(Arg.Any<CancellationToken>())
                 ),
             }.ToData();
     }

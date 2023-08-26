@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq.Expressions;
 using HttpContextMoq.Generic;
-using Moq;
+using NSubstitute;
 
 namespace HttpContextMoq.Tests
 {
@@ -9,13 +8,13 @@ namespace HttpContextMoq.Tests
         where TContext : class
         where TContextMock : class, IContextMock<TContext>, TContext
     {
-        private readonly Expression<Action<TContext>> _invokeExpression;
-        private readonly Func<Times> _times;
-
-        public MethodInvokeUnitTest(Expression<Action<TContext>> invokeExpression, Func<Times> times = null)
+        private readonly Action<TContext> _invokeExpression;
+        private readonly int _count;
+        
+        public MethodInvokeUnitTest(Action<TContext> invokeExpression, int count = 1)
         {
             _invokeExpression = invokeExpression;
-            _times = times;
+            _count = count;
         }
 
         public override void Run(Func<TContextMock> targetFactory)
@@ -23,11 +22,8 @@ namespace HttpContextMoq.Tests
             // Arrange
             var target = targetFactory.Invoke();
 
-            // Act
-            _invokeExpression.Compile().Invoke(target);
-
             // Assert
-            target.Mock.Verify(_invokeExpression, _times ?? Times.Once);
+            target.Mock.Received(1).When(_invokeExpression);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
 using HttpContextMoq.Generic;
-using Moq;
 
 namespace HttpContextMoq.Tests
 {
@@ -11,14 +10,14 @@ namespace HttpContextMoq.Tests
     {
         private readonly PropertyGetUnitTest<TContextMock, TContext, TProperty> _getUnitTest;
         private readonly PropertySetUnitTest<TContextMock, TContext> _setUnitTest;
-
+        
         public PropertyGetSetUnitTest(
             Expression<Func<TContext, TProperty>> getterExpression,
             Action<TContext> setterExpression,
-            Func<Times> times = null)
+            int received = 1)
         {
-            _getUnitTest = new PropertyGetUnitTest<TContextMock, TContext, TProperty>(getterExpression, times);
-            _setUnitTest = new PropertySetUnitTest<TContextMock, TContext>(setterExpression, times);
+            _getUnitTest = new PropertyGetUnitTest<TContextMock, TContext, TProperty>(getterExpression, received);
+            _setUnitTest = new PropertySetUnitTest<TContextMock, TContext>(setterExpression, received);
         }
 
         public override void Run(Func<TContextMock> targetFactory)
