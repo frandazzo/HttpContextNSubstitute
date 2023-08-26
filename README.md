@@ -89,5 +89,6 @@ Uses [SemVer](http://semver.org/) for versioning. For the versions available, se
 ## Authors
 
 * **Tiago Araújo** - *Initial work* - [tiagodaraujo](https://github.com/tiagodaraujo)
+* **Roberto Conte Rosito** -   *NSubstitute implementation* - [robyconte](https://github.com/robyconte)
 
 See also the list of [contributors](https://github.com/tiagodaraujo/HttpContextNSubstitute/contributors) who participated in this project.
